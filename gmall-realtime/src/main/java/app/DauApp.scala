@@ -37,12 +37,12 @@ object DauApp {
 
 
 
-//    //TODO=============
-//    val filteredStartupLogStream: DStream[StartupLog] = startupLogStream.transform(rdd => {
-//      val client: Jedis = RedisUtil.getClient()
-//      val mids: util.Set[String] = client.smembers(
-//        Constant.STARTUP_TOPIC + ":" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()))
-//      client.close()
+    //TODO=============
+    val filteredStartupLogStream: DStream[StartupLog] = startupLogStream.transform(rdd => {
+      val client: Jedis = RedisUtil.getClient()
+      val mids: util.Set[String] = client.smembers(
+        Constant.STARTUP_TOPIC + ":" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()))
+      client.close()
 //
 //      val midsBD: Broadcast[util.Set[String]] = ssc.sparkContext.broadcast(mids)
 //      //条件成立则保留，不成立则过滤
