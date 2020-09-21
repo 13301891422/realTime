@@ -29,10 +29,13 @@ object DauApp {
     //TODO 2. 获取流
     val sourceStream: DStream[String] = MyKafkaUtil.getKafkaStream(ssc, Constant.STARTUP_TOPIC)
 
+
     sourceStream.print()
     // 2.1 把每个json字符串的数据,父封装到一个样例类对象中
-//    val startupLogStream: DStream[StartupLog] = sourceStream.map(json => JSON.parseObject(json, classOf[StartupLog]))
-//    //TODO 3. 去重  过滤掉一件启动的那些设备的记录  从redis去读取已经启动过的设备的id
+    val startupLogStream: DStream[StartupLog] = sourceStream.map(json => JSON.parseObject(json, classOf[StartupLog]))
+    //TODO 3. 去重  过滤掉一件启动的那些设备的记录  从redis去读取已经启动过的设备的id
+
+
 
 //    //TODO=============
 //    val filteredStartupLogStream: DStream[StartupLog] = startupLogStream.transform(rdd => {
